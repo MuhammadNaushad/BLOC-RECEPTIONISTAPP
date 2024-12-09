@@ -1,0 +1,768 @@
+{
+    "status": true,
+    "message": "Vendor List",
+    "data": {
+        "client": {
+            "userid": "2",
+            "company": "Test Company ccx",
+            "vat": "",
+            "phonenumber": "",
+            "country": "0",
+            "city": "Gurugram",
+            "zip": "110074",
+            "state": "Delhi",
+            "address": "Gurugram",
+            "website": "",
+            "datecreated": "2023-10-18 00:27:02",
+            "active": "1",
+            "leadid": null,
+            "billing_street": "Gurugram",
+            "billing_city": "Gurugram",
+            "billing_state": "Delhi",
+            "billing_zip": "110074",
+            "billing_country": "0",
+            "shipping_street": "czxczc",
+            "shipping_city": "",
+            "shipping_state": "",
+            "shipping_zip": "",
+            "shipping_country": "0",
+            "longitude": null,
+            "latitude": null,
+            "default_language": null,
+            "default_currency": "0",
+            "show_primary_contact": "0",
+            "stripe_id": null,
+            "registration_confirmed": "1",
+            "addedfrom": "1",
+            "category": null,
+            "bank_detail": "",
+            "payment_terms": "",
+            "vendor_code": "Test1234",
+            "return_within_day": null,
+            "return_order_fee": null,
+            "return_policies": null
+        },
+        "title": "Test Company ccx",
+        "currency_list": [
+            {
+                "id": "",
+                "text": "-"
+            },
+            {
+                "id": "AED",
+                "text": "AED"
+            },
+            {
+                "id": "AFN",
+                "text": "AFN"
+            },
+            {
+                "id": "ALL",
+                "text": "ALL"
+            },
+            {
+                "id": "AMD",
+                "text": "AMD"
+            },
+            {
+                "id": "ANG",
+                "text": "ANG"
+            },
+            {
+                "id": "AOA",
+                "text": "AOA"
+            },
+            {
+                "id": "ARS",
+                "text": "ARS"
+            },
+            {
+                "id": "AUD",
+                "text": "AUD"
+            },
+            {
+                "id": "AWG",
+                "text": "AWG"
+            },
+            {
+                "id": "AZN",
+                "text": "AZN"
+            },
+            {
+                "id": "BAM",
+                "text": "BAM"
+            },
+            {
+                "id": "BBD",
+                "text": "BBD"
+            },
+            {
+                "id": "BDT",
+                "text": "BDT"
+            },
+            {
+                "id": "BGN",
+                "text": "BGN"
+            },
+            {
+                "id": "BHD",
+                "text": "BHD"
+            },
+            {
+                "id": "BIF",
+                "text": "BIF"
+            },
+            {
+                "id": "BMD",
+                "text": "BMD"
+            },
+            {
+                "id": "BND",
+                "text": "BND"
+            },
+            {
+                "id": "BOB",
+                "text": "BOB"
+            },
+            {
+                "id": "BOV",
+                "text": "BOV"
+            },
+            {
+                "id": "BRL",
+                "text": "BRL"
+            },
+            {
+                "id": "BSD",
+                "text": "BSD"
+            },
+            {
+                "id": "BTN",
+                "text": "BTN"
+            },
+            {
+                "id": "BWP",
+                "text": "BWP"
+            },
+            {
+                "id": "BYR",
+                "text": "BYR"
+            },
+            {
+                "id": "BZD",
+                "text": "BZD"
+            },
+            {
+                "id": "CAD",
+                "text": "CAD"
+            },
+            {
+                "id": "CDF",
+                "text": "CDF"
+            },
+            {
+                "id": "CHE",
+                "text": "CHE"
+            },
+            {
+                "id": "CHF",
+                "text": "CHF"
+            },
+            {
+                "id": "CHW",
+                "text": "CHW"
+            },
+            {
+                "id": "CLF",
+                "text": "CLF"
+            },
+            {
+                "id": "CLP",
+                "text": "CLP"
+            },
+            {
+                "id": "CNY",
+                "text": "CNY"
+            },
+            {
+                "id": "COP",
+                "text": "COP"
+            },
+            {
+                "id": "COU",
+                "text": "COU"
+            },
+            {
+                "id": "CRC",
+                "text": "CRC"
+            },
+            {
+                "id": "CUC",
+                "text": "CUC"
+            },
+            {
+                "id": "CUP",
+                "text": "CUP"
+            },
+            {
+                "id": "CVE",
+                "text": "CVE"
+            },
+            {
+                "id": "CZK",
+                "text": "CZK"
+            },
+            {
+                "id": "DJF",
+                "text": "DJF"
+            },
+            {
+                "id": "DKK",
+                "text": "DKK"
+            },
+            {
+                "id": "DOP",
+                "text": "DOP"
+            },
+            {
+                "id": "DZD",
+                "text": "DZD"
+            },
+            {
+                "id": "EGP",
+                "text": "EGP"
+            },
+            {
+                "id": "ERN",
+                "text": "ERN"
+            },
+            {
+                "id": "ETB",
+                "text": "ETB"
+            },
+            {
+                "id": "EUR",
+                "text": "EUR"
+            },
+            {
+                "id": "FJD",
+                "text": "FJD"
+            },
+            {
+                "id": "FKP",
+                "text": "FKP"
+            },
+            {
+                "id": "GBP",
+                "text": "GBP"
+            },
+            {
+                "id": "GEL",
+                "text": "GEL"
+            },
+            {
+                "id": "GHS",
+                "text": "GHS"
+            },
+            {
+                "id": "GIP",
+                "text": "GIP"
+            },
+            {
+                "id": "GMD",
+                "text": "GMD"
+            },
+            {
+                "id": "GNF",
+                "text": "GNF"
+            },
+            {
+                "id": "GTQ",
+                "text": "GTQ"
+            },
+            {
+                "id": "GYD",
+                "text": "GYD"
+            },
+            {
+                "id": "HKD",
+                "text": "HKD"
+            },
+            {
+                "id": "HNL",
+                "text": "HNL"
+            },
+            {
+                "id": "HRK",
+                "text": "HRK"
+            },
+            {
+                "id": "HTG",
+                "text": "HTG"
+            },
+            {
+                "id": "HUF",
+                "text": "HUF"
+            },
+            {
+                "id": "IDR",
+                "text": "IDR"
+            },
+            {
+                "id": "ILS",
+                "text": "ILS"
+            },
+            {
+                "id": "INR",
+                "text": "INR"
+            },
+            {
+                "id": "IQD",
+                "text": "IQD"
+            },
+            {
+                "id": "IRR",
+                "text": "IRR"
+            },
+            {
+                "id": "ISK",
+                "text": "ISK"
+            },
+            {
+                "id": "JMD",
+                "text": "JMD"
+            },
+            {
+                "id": "JOD",
+                "text": "JOD"
+            },
+            {
+                "id": "JPY",
+                "text": "JPY"
+            },
+            {
+                "id": "KES",
+                "text": "KES"
+            },
+            {
+                "id": "KGS",
+                "text": "KGS"
+            },
+            {
+                "id": "KHR",
+                "text": "KHR"
+            },
+            {
+                "id": "KMF",
+                "text": "KMF"
+            },
+            {
+                "id": "KPW",
+                "text": "KPW"
+            },
+            {
+                "id": "KRW",
+                "text": "KRW"
+            },
+            {
+                "id": "KWD",
+                "text": "KWD"
+            },
+            {
+                "id": "KYD",
+                "text": "KYD"
+            },
+            {
+                "id": "KZT",
+                "text": "KZT"
+            },
+            {
+                "id": "LAK",
+                "text": "LAK"
+            },
+            {
+                "id": "LBP",
+                "text": "LBP"
+            },
+            {
+                "id": "LKR",
+                "text": "LKR"
+            },
+            {
+                "id": "LRD",
+                "text": "LRD"
+            },
+            {
+                "id": "LSL",
+                "text": "LSL"
+            },
+            {
+                "id": "LYD",
+                "text": "LYD"
+            },
+            {
+                "id": "MAD",
+                "text": "MAD"
+            },
+            {
+                "id": "MDL",
+                "text": "MDL"
+            },
+            {
+                "id": "MGA",
+                "text": "MGA"
+            },
+            {
+                "id": "MKD",
+                "text": "MKD"
+            },
+            {
+                "id": "MMK",
+                "text": "MMK"
+            },
+            {
+                "id": "MNT",
+                "text": "MNT"
+            },
+            {
+                "id": "MOP",
+                "text": "MOP"
+            },
+            {
+                "id": "MRO",
+                "text": "MRO"
+            },
+            {
+                "id": "MUR",
+                "text": "MUR"
+            },
+            {
+                "id": "MVR",
+                "text": "MVR"
+            },
+            {
+                "id": "MWK",
+                "text": "MWK"
+            },
+            {
+                "id": "MXN",
+                "text": "MXN"
+            },
+            {
+                "id": "MXV",
+                "text": "MXV"
+            },
+            {
+                "id": "MYR",
+                "text": "MYR"
+            },
+            {
+                "id": "MZN",
+                "text": "MZN"
+            },
+            {
+                "id": "NAD",
+                "text": "NAD"
+            },
+            {
+                "id": "NGN",
+                "text": "NGN"
+            },
+            {
+                "id": "NIO",
+                "text": "NIO"
+            },
+            {
+                "id": "NOK",
+                "text": "NOK"
+            },
+            {
+                "id": "NPR",
+                "text": "NPR"
+            },
+            {
+                "id": "NZD",
+                "text": "NZD"
+            },
+            {
+                "id": "OMR",
+                "text": "OMR"
+            },
+            {
+                "id": "PAB",
+                "text": "PAB"
+            },
+            {
+                "id": "PEN",
+                "text": "PEN"
+            },
+            {
+                "id": "PGK",
+                "text": "PGK"
+            },
+            {
+                "id": "PHP",
+                "text": "PHP"
+            },
+            {
+                "id": "PKR",
+                "text": "PKR"
+            },
+            {
+                "id": "PLN",
+                "text": "PLN"
+            },
+            {
+                "id": "PYG",
+                "text": "PYG"
+            },
+            {
+                "id": "QAR",
+                "text": "QAR"
+            },
+            {
+                "id": "RON",
+                "text": "RON"
+            },
+            {
+                "id": "RSD",
+                "text": "RSD"
+            },
+            {
+                "id": "RUB",
+                "text": "RUB"
+            },
+            {
+                "id": "RWF",
+                "text": "RWF"
+            },
+            {
+                "id": "SAR",
+                "text": "SAR"
+            },
+            {
+                "id": "SBD",
+                "text": "SBD"
+            },
+            {
+                "id": "SCR",
+                "text": "SCR"
+            },
+            {
+                "id": "SDG",
+                "text": "SDG"
+            },
+            {
+                "id": "SEK",
+                "text": "SEK"
+            },
+            {
+                "id": "SGD",
+                "text": "SGD"
+            },
+            {
+                "id": "SHP",
+                "text": "SHP"
+            },
+            {
+                "id": "SLL",
+                "text": "SLL"
+            },
+            {
+                "id": "SOS",
+                "text": "SOS"
+            },
+            {
+                "id": "SRD",
+                "text": "SRD"
+            },
+            {
+                "id": "SSP",
+                "text": "SSP"
+            },
+            {
+                "id": "STD",
+                "text": "STD"
+            },
+            {
+                "id": "SYP",
+                "text": "SYP"
+            },
+            {
+                "id": "SZL",
+                "text": "SZL"
+            },
+            {
+                "id": "THB",
+                "text": "THB"
+            },
+            {
+                "id": "TJS",
+                "text": "TJS"
+            },
+            {
+                "id": "TMT",
+                "text": "TMT"
+            },
+            {
+                "id": "TND",
+                "text": "TND"
+            },
+            {
+                "id": "TOP",
+                "text": "TOP"
+            },
+            {
+                "id": "TRY",
+                "text": "TRY"
+            },
+            {
+                "id": "TTD",
+                "text": "TTD"
+            },
+            {
+                "id": "TWD",
+                "text": "TWD"
+            },
+            {
+                "id": "TZS",
+                "text": "TZS"
+            },
+            {
+                "id": "UAH",
+                "text": "UAH"
+            },
+            {
+                "id": "UGX",
+                "text": "UGX"
+            },
+            {
+                "id": "USD",
+                "text": "USD"
+            },
+            {
+                "id": "USN",
+                "text": "USN"
+            },
+            {
+                "id": "USS",
+                "text": "USS"
+            },
+            {
+                "id": "UYI",
+                "text": "UYI"
+            },
+            {
+                "id": "UYU",
+                "text": "UYU"
+            },
+            {
+                "id": "UZS",
+                "text": "UZS"
+            },
+            {
+                "id": "VEF",
+                "text": "VEF"
+            },
+            {
+                "id": "VND",
+                "text": "VND"
+            },
+            {
+                "id": "VUV",
+                "text": "VUV"
+            },
+            {
+                "id": "WST",
+                "text": "WST"
+            },
+            {
+                "id": "XAF",
+                "text": "XAF"
+            },
+            {
+                "id": "XAG",
+                "text": "XAG"
+            },
+            {
+                "id": "XAU",
+                "text": "XAU"
+            },
+            {
+                "id": "XBA",
+                "text": "XBA"
+            },
+            {
+                "id": "XBB",
+                "text": "XBB"
+            },
+            {
+                "id": "XBC",
+                "text": "XBC"
+            },
+            {
+                "id": "XBD",
+                "text": "XBD"
+            },
+            {
+                "id": "XCD",
+                "text": "XCD"
+            },
+            {
+                "id": "XDR",
+                "text": "XDR"
+            },
+            {
+                "id": "XFU",
+                "text": "XFU"
+            },
+            {
+                "id": "XOF",
+                "text": "XOF"
+            },
+            {
+                "id": "XPD",
+                "text": "XPD"
+            },
+            {
+                "id": "XPF",
+                "text": "XPF"
+            },
+            {
+                "id": "XPT",
+                "text": "XPT"
+            },
+            {
+                "id": "XSU",
+                "text": "XSU"
+            },
+            {
+                "id": "XTS",
+                "text": "XTS"
+            },
+            {
+                "id": "XUA",
+                "text": "XUA"
+            },
+            {
+                "id": "YER",
+                "text": "YER"
+            },
+            {
+                "id": "ZAR",
+                "text": "ZAR"
+            },
+            {
+                "id": "ZMW",
+                "text": "ZMW"
+            }
+        ],
+        "vendor_category": [
+            {
+                "id": "1",
+                "category_name": "Test Category",
+                "description": "Test Category Description"
+            }
+        ]
+    }
+}

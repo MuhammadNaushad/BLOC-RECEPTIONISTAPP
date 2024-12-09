@@ -1,0 +1,132 @@
+name: yslcrm
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  
+  bot_toast: 
+  fluttertoast: ^8.2.2
+  connectivity_plus: 
+  cached_network_image: ^3.3.0
+  dropdown_button2:
+  #getwidget: ^3.0.1 
+  nb_utils: 
+  get: 4.6.6
+  flutter_bloc: ^8.1.6
+  flutter_riverpod: ^2.3.6
+  hive: 
+  hive_flutter: 
+  http: 
+  dio: ^5.3.2
+  shimmer: ^3.0.0
+  image_cropper: ^5.0.0
+  image_picker: ^1.0.4
+  intl: 
+  permission_handler: ^9.2.0
+  simple_fontellico_progress_dialog: 
+  syncfusion_flutter_calendar: ^20.2.45
+  flutter_rating_bar: 
+  time_picker_widget: ^1.0.0+10 
+  file_picker: 
+  shared_preferences:
+  path_provider:
+  scroll_to_index: 
+  animated_custom_dropdown: 
+  photo_view: 
+  url_launcher:
+  dropdown_search: ^5.0.2
+  badges: ^3.1.2
+  expandable: ^5.0.1
+  carousel_slider: ^4.1.1
+  dots_indicator: ^3.0.0
+  currency_formatter: ^2.1.0
+  flutter_slidable: ^3.0.0
+  flutter_speed_dial: 7.0.0
+  flutter_file_downloader: 1.2.0
+  whatsapp_share: 2.0.2
+  printing: 5.11.1
+  lottie: ^3.1.0 
+
+  #Animation
+  simple_animations: ^5.0.0
+  #Firebase
+  firebase_core: 
+  firebase_messaging: 
+  flutter_local_notifications: 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  change_app_package_name: 
+  flutter_launcher_icons:  
+
+
+flutter_launcher_icons:
+  image_path: "assets/images/app_logo.jpeg" 
+  android: true
+  ios: true
+
+flutter:
+  uses-material-design: true
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/animations/
+
+  #Fonts
+  fonts:
+        - family: WorkSans
+          fonts:
+              - asset: assets/fonts/WorkSans-Regular.ttf
+              - asset: assets/fonts/WorkSans-Medium.ttf
+                weight: 500
+              - asset: assets/fonts/WorkSans-SemiBold.ttf
+                weight: 600
+              - asset: assets/fonts/WorkSans-Bold.ttf
+                weight: 700
+        - family: Roboto
+          fonts:
+              - asset: assets/fonts/Roboto-Bold.ttf
+              - asset: assets/fonts/Roboto-Regular.ttf
+              - asset: assets/fonts/Roboto-Medium.ttf
+                weight: 400  
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

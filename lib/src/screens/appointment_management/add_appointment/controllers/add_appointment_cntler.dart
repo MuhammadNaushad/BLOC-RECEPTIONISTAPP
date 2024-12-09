@@ -1,0 +1,435 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yslcrm/src/api/http_helper.dart';
+import 'package:yslcrm/src/models/appointment_management/add_appointment/get_patients_for_appnmt.dart';
+import 'package:yslcrm/src/models/doctors_management/get_all_doctors_list_model.dart';
+import 'package:yslcrm/src/models/patients_management/existing_user_data_model.dart';
+import 'package:yslcrm/src/models/schedule_management/get_all_slot_model.dart';
+import 'package:yslcrm/src/routes/app_pages.dart';
+import 'package:yslcrm/src/utils/alerts.dart';
+import 'package:yslcrm/src/utils/preferences.dart';
+
+import '../../../../utils/utilities.dart';
+
+class AddAppointmentController extends GetxController {
+//AddContacts TF Controllers
+  final fNameCtrler = TextEditingController();
+  final userCtrler = TextEditingController();
+  final ageCtrler = TextEditingController();
+  final addressCtrler = TextEditingController();
+  final phoneCtrler = TextEditingController();
+  final emailCtrler = TextEditingController();
+  final pwdCtrler = TextEditingController();
+  final priceCtrler = TextEditingController();
+  final receiptNoCtrler = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  var obscureText = true.obs;
+  var primaryContact = false.obs;
+  static bool loadContacts = false;
+  static String patientID = "";
+  String patientIdToPost = "";
+
+  //Handling View Stuff
+  bool isShowSearchBtn = true;
+  bool isShowUserView = false;
+  bool isShowPatientView = false;
+  int statusToPost = 1;
+  String genderToPost = "";
+  String userIdToPost = "";
+
+//Patients Dropdown Stuff
+  final patientDCtrler = TextEditingController();
+  List<String> patientDList = <String>[];
+  List<String> patientDIDList = [];
+  String patientDropDIdToPost = "";
+  //Dropdown Stuff
+  final doctorDDCtrler = TextEditingController();
+  List<String> doctorDDList = <String>[];
+  List<String> doctorDDIDList = [];
+  String doctorDDIdToPost = "";
+  //Dropdown Stuff
+  final slotsDDCtrler = TextEditingController();
+  List<String> slotsDDList = <String>[];
+  List<String> slotsDDIDList = [];
+  String slotsDDIdToPost = "";
+
+  //Dropdown Stuff
+  final paymentDDCtrler = TextEditingController();
+  List<String> paymentDDList = <String>["Cash", "Walk In Online"];
+  List<String> paymentDDIDList = [];
+  String paymentDDIdToPost = "";
+  //TextFieldCntlers
+  final dateCtrler = TextEditingController();
+
+  //Handling DropD Disable Views Stuff
+  bool isDoctorDDEnable = false;
+  bool isDateEnable = false;
+  bool isSlotDDEnable = false;
+  bool isPaymentTFEnable = false;
+
+  @override
+  void onInit() async {
+    print(patientID);
+
+    /* ///checking condition
+    if (patientID != "0" && patientID.isNotEmpty) {
+      //Assigning Initial Values for update
+      patientIdToPost = patientID;
+      userCtrler.text = Get.parameters["user_name"]!;
+      fNameCtrler.text = Get.parameters["patient_name"]!;
+      ageCtrler.text = Get.parameters["age"]!;
+      genderToPost = Get.parameters["gender"]!;
+    } */
+    await getDoctorsListData(isShowTaost: false);
+    super.onInit();
+  }
+
+  Future<void> addAppointment() async {
+    if (await Utilities.isOnline()) {
+      try {
+        Utilities.showDialog(Get.context!);
+        final token = await Preferences.getString(Preferences.login_token);
+        final recept_id = await Preferences.getString(Preferences.user_id);
+        final recept_name =
+            await Preferences.getString(Preferences.user_first_name) +
+                " " +
+                await Preferences.getString(Preferences.user_last_name);
+        debugPrint(recept_id);
+        debugPrint(recept_name);
+
+        final Map<String, dynamic> jsonObject = {
+          "patient_id": patientDropDIdToPost,
+          "date": dateCtrler.text.trim(),
+          'avail_id': slotsDDIdToPost,
+          'price': priceCtrler.text.trim(),
+          "payment_mode": paymentDDIdToPost,
+          // 'receiptno': receiptNoCtrler.text.trim(),
+          'doctor': doctorDDIdToPost,
+          'receptionist_id': recept_id,
+          'receptionist_name': recept_name,
+        };
+        debugPrint(jsonObject.toString());
+
+        final result = await HttpHelper.executePost(
+            jsonObject, HttpHelper.bookAppointment, null, token);
+
+        debugPrint(result.toString());
+        Utilities.hideDialog();
+        if (result["status"] == 1) {
+          if (result["data"] != null) {
+            Utilities.showToast(message: result["message"] ?? "status");
+            await Utilities.delay(1000);
+            loadContacts = true;
+            if (AddAppointmentController.loadContacts) {
+              Navigator.pop(Get.context!, "reload");
+            } else {
+              Navigator.pop(Get.context!);
+            }
+          } else {
+            Utilities.hideDialog();
+            Utilities.showToast(message: "No data found, Please try again.");
+          }
+        } else {
+          Utilities.hideDialog();
+          if (result["message"] == "Unauthenticated.") {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Session expired!, Please login again.");
+            Alerts.showOneBtnDialog();
+          } else {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        }
+      } catch (e) {
+        Utilities.hideDialog();
+        Utilities.showToast(message: "Something went wrong");
+      }
+    } else {
+      Utilities.noInternet();
+    }
+  }
+
+  Future<void> getDoctorsListData(
+      {String? search, bool isShowTaost = true}) async {
+    if (await Utilities.isOnline()) {
+      try {
+        // Utilities.showDialog(Get.context!);
+        final result;
+        // await Utilities.delay(3000);
+        final token = await Preferences.getString(Preferences.login_token);
+        if (search != null) {
+          result = await HttpHelper.executeGet(
+              HttpHelper.getActiveDoctorsList + "?search=$search",
+              token); //?patient_id=147&name=varsha&phone=9511242559
+        } else {
+          result = await HttpHelper.executeGet(
+              HttpHelper.getActiveDoctorsList, token);
+        }
+
+        debugPrint(result.toString());
+
+        //  Utilities.hideDialog();
+        if (result["status"] == 1) {
+          if (result["data"] != null) {
+            doctorDDList.clear();
+            doctorDDIDList.clear();
+            final GetAllDoctorsListModel data =
+                GetAllDoctorsListModel.fromJson(result);
+            if (data.data != null && data.data!.isNotEmpty) {
+              for (var i = 0; i < data.data!.length; i++) {
+                doctorDDList.add(data.data![i].name ?? "");
+                doctorDDIDList.add(data.data![i].id.toString());
+              }
+              debugPrint(doctorDDList.toString());
+              debugPrint(doctorDDIDList.toString());
+            } else {}
+            if (isShowTaost)
+              Utilities.showToast(message: result["message"] ?? "status");
+          } else {
+            // Utilities.hideDialog();
+            if (isShowTaost)
+              Utilities.showToast(message: "No data found, Please try again.");
+          }
+        } else {
+          // Utilities.hideDialog();
+          if (result["message"] == "Unauthenticated.") {
+            Utilities.showToast(
+                message:
+                    result["message"] ?? "Session expired! Please login again");
+            Alerts.showOneBtnDialog();
+          } else {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        }
+      } catch (e) {
+        // Utilities.hideDialog();
+
+        Utilities.showToast(message: "Something went wrong");
+      }
+    } else {
+      Utilities.noInternet();
+    }
+  }
+
+  Future<void> checkPatient({required String phone_no}) async {
+    if (await Utilities.isOnline()) {
+      try {
+        Utilities.showDialog(Get.context!);
+        final token = await Preferences.getString(Preferences.login_token);
+        final Map<String, dynamic> jsonObject = {
+          "phone": phone_no,
+        };
+        final result = await HttpHelper.executePost(
+            jsonObject, HttpHelper.checkPatientForAppointm, null, token);
+        debugPrint(result.toString());
+        Utilities.hideDialog();
+        if (result["status"] == 1) {
+          if (result["data"] != null && result["data"] != "") {
+            isShowSearchBtn = false;
+            isShowUserView = false;
+            isShowPatientView = true;
+            patientDList.clear();
+            patientDIDList.clear();
+            final existingPatientObj =
+                GetPatientListForAppnmtDataModel.fromJson(result);
+            if (existingPatientObj.data!.isNotEmpty) {
+              for (var i = 0; i < existingPatientObj.data!.length; i++) {
+                patientDList.add(existingPatientObj.data![i].name ?? "");
+                patientDIDList.add(existingPatientObj.data![i].id.toString());
+              }
+              debugPrint(patientDList.toString());
+              debugPrint(patientDIDList.toString());
+            }
+            /* if (result["data"]["user_status"] != null &&
+                result["data"]["user_status"]) {
+              isShowUserView = false;
+              isShowPatientView = true;
+              
+              if (existingUserObj.data != null) {
+                if (existingUserObj.data!.data != null) {
+                  final userObj = existingUserObj.data!.data;
+                  debugPrint(userObj.toString());
+                  userIdToPost = userObj!.id.toString();
+                }
+              }
+            } else {
+              isShowUserView = true;
+              isShowPatientView = false;
+            } */
+            Utilities.showToast(message: result["message"] ?? "success");
+            update();
+          } else {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+            final resultFromPatientPage = await Get.toNamed(Routes.AddPatient,
+                parameters: {
+                  "phone": phoneCtrler.text.trim(),
+                  "key": "navigate_to_add_patient_page"
+                });
+            if (resultFromPatientPage != null) {
+              await getDoctorsListData(isShowTaost: false);
+            }
+          }
+        } else {
+          Utilities.hideDialog();
+          if (result["message"] == "Unauthenticated.") {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Session expired!, Please login again.");
+            Alerts.showOneBtnDialog();
+          } else {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        }
+      } catch (e) {
+        Utilities.hideDialog();
+        Utilities.showToast(message: "Something went wrong");
+      }
+    } else {
+      Utilities.noInternet();
+    }
+  }
+
+  Future<void> checkSlots() async {
+    if (await Utilities.isOnline()) {
+      try {
+        Utilities.showDialog(Get.context!);
+        final token = await Preferences.getString(Preferences.login_token);
+        final Map<String, dynamic> jsonObject = {
+          "doctor_id": doctorDDIdToPost,
+          "date": dateCtrler.text,
+        };
+        final result = await HttpHelper.executePost(
+            jsonObject, HttpHelper.checkslots, null, token);
+        debugPrint(result.toString());
+        Utilities.hideDialog();
+        if (result["status"] == 1) {
+          if (result["data"] != null) {
+            isSlotDDEnable = true;
+            final GetAllSheduleModel data = GetAllSheduleModel.fromJson(result);
+            if (data.data != null && data.data!.isNotEmpty) {
+              slotsDDList.clear();
+              slotsDDIDList.clear();
+              for (var i = 0; i < data.data!.length; i++) {
+                slotsDDList.add(data.data![i].timeSlots ?? "");
+                slotsDDIDList.add(data.data![i].id.toString());
+              }
+              debugPrint(slotsDDList.toString());
+              debugPrint(slotsDDIDList.toString());
+            } else {
+              isSlotDDEnable = false;
+              // dateCtrler.text = "";
+            }
+            Utilities.showToast(message: result["message"] ?? "success");
+          } else {
+            isSlotDDEnable = false;
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        } else {
+          isSlotDDEnable = false;
+          dateCtrler.text = "";
+          Utilities.hideDialog();
+          if (result["message"] == "Unauthenticated.") {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Session expired!, Please login again.");
+            Alerts.showOneBtnDialog();
+          } else {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        }
+      } catch (e) {
+        Utilities.hideDialog();
+        Utilities.showToast(message: "Something went wrong");
+      }
+    } else {
+      Utilities.noInternet();
+    }
+  }
+
+  Future<void> getPrice() async {
+    if (await Utilities.isOnline()) {
+      try {
+        Utilities.showDialog(Get.context!);
+        final token = await Preferences.getString(Preferences.login_token);
+        final Map<String, dynamic> jsonObject = {
+          "doctor_id": doctorDDIdToPost,
+          "patient_id": patientDropDIdToPost,
+        };
+        final result = await HttpHelper.executePost(
+            jsonObject, HttpHelper.getprice, null, token);
+        debugPrint(result.toString());
+        Utilities.hideDialog();
+        if (result["status"] == 1) {
+          if (result["data"] != null) {
+            if (result["data"]["price"] != null) {
+              priceCtrler.text = result["data"]["price"].toString();
+            }
+            Utilities.showToast(message: result["message"] ?? "success");
+          } else {
+            isSlotDDEnable = false;
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        } else {
+          isSlotDDEnable = false;
+          dateCtrler.text = "";
+          Utilities.hideDialog();
+          if (result["message"] == "Unauthenticated.") {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Session expired!, Please login again.");
+            Alerts.showOneBtnDialog();
+          } else {
+            Utilities.showToast(
+                message: result["message"] ??
+                    "Unable to proceed, Please try again.");
+          }
+        }
+      } catch (e) {
+        Utilities.hideDialog();
+        Utilities.showToast(message: "Something went wrong");
+      }
+    } else {
+      Utilities.noInternet();
+    }
+  }
+
+  Future<void> validation() async {
+    if (fNameCtrler.text.isEmpty) {
+      Utilities.showToast(message: 'Please enter full name');
+    } else if (fNameCtrler.text.isEmpty) {
+      Utilities.showToast(message: 'Please enter last name');
+    } else if (emailCtrler.text.isEmpty || !emailCtrler.text.isEmail) {
+      Utilities.showToast(message: 'Please enter valid email id');
+    } else if (pwdCtrler.text.isEmpty) {
+      Utilities.showToast(message: 'Please enter password');
+    } else {
+      await ();
+    }
+  }
+
+  @override
+  void onClose() {
+    loadContacts = false;
+    patientID = "";
+    patientIdToPost = "";
+    userIdToPost = "";
+    patientDList.clear();
+    patientDIDList.clear();
+    super.onClose();
+  }
+}

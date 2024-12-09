@@ -1,0 +1,138 @@
+//-------User Type-------//
+1->Supervisor
+2-> FOS
+
+//-------Notification Type and Flow-------//
+0= normal(notification from admin for all vendor) , 
+1= order ,
+2= product upload,
+3 = visit scedule or rescheduled ,
+4 = vendor_registered, 
+5= assign_task, 
+6= reminder, 
+7= rejected_task, 
+8= visit_completed,
+9= quality_check
+10= kyc upload
+11=task_accepted
+12=QC_Completed
+13=kyc_reject --> Need to change
+16= order rejected by vendor
+17 = //order assign from customer
+18 = Task rejected from vendor
+19 = Task rejected from vendor (Order Wala)
+20 = Visit accepted from vendor
+21 = Visit rejected from vendor
+22= Request From Vendor to FOS
+23- visit schedule for supervisor as participant
+24- visit re schedule for supervisor as participant
+
+//-------To Notification Button Show / Hide ------//
+is_action
+0-means show button
+1-means not show
+
+//-----QC Completed Status-----//
+1-Approved , 2- Rejected
+0- pending
+
+//-----KYC Status-----//
+kyc_status=0 -> Pending , 
+kyc_status=2 -> Verified , 
+kyc_status=3 -> Rejected , 
+
+/* is_pending = 1 = re-schedule
+is_spending = 0 = rate (rating null)
+is_spending = 0 == rating = 5= star */
+
+//-----Credentials----//
+farhatkausar.yugasa+24@gmail.com
+9963
+farhatkausar.yugasa@gmail.com supervisor
+1234
+farhatkausar.yugasa+61@gmail.com (fos)
+7067 
+farhatkausar67+546@gmail.com (fos)
+
+
+//Calicut region list
+673001,673002,673003,673004
+
+//-------Demo Task-------//
+Vendor App: 
+1- Customer Order Push Notification
+2- Order Accept & Reject Button 
+3- Order Rejection reason dropdown
+3- In case of reject order then a notification to the FoS & Supervisor
+4- The supervisor can transfer this order to other related vendors 
+5- If assigning the order to the new vendor, the new vendor will receive the notification
+6- And again the new assignee vendor proceeded with the order.
+
+FoS & Supervisor App: 
+1- Rejected Orders Screen With API
+2- The supervisor can transfer this order to other related vendors 
+3- If assigning the order to the new vendor, the new vendor will receive the notification
+4- And again the new assignee vendor proceeded with the order.
+
+//CR & changes points to do
+3.If the kyc details is not filled compeltely, then after editing it, it should land the exact location of the attribute/files.
+4.Once kyc deatils filled completely, then it start the form, from the first page(form).
+5.In filter list of visit screen need to change "upload picture" to "product Upload".
+6.On the supervisor app, My vendor screen should have assigned vendor list by default.
+7.On the supervisor app, Dashboard on my vendors there will be one icon for unassgined vendors on click of that will open list of unassigned vendors.
+8.On the supervisor app, My vendor will count only assigned vendors.
+9.On the supervisor app, Need to Remove assigned and unassigned filters of My vendor screen.
+10.Supervisor should be able add visit for himself.
+
+//-----MOM------//
+FOS points noted from my side
+1- Locate while adding kyc document when any of them are missing ------> Done
+2- Once kyc completed from fos then redirected to first page     ------> Done
+3- Need to send Notification to Admin when kyc final submit
+4- Need to share points where we need text from client and resons of rejection
+5- After rejection add reason in notification list               ------> Done
+6- filter list for type of task need to send with Client
+5- In filter list "upload picture"=>"product Upload"             -------> Done    
+6- Add rating in my FOS listing and filter by rating and filter by area (not noted completely)
+7- in default assigned vendor list                               ------->Done
+8- Dashboard on my vendors there will be one icon on click of that list of unassigned vendor
+9- My  vendor will count only assigned vendors            ---------------> Done
+10- Remov assigned and unassigned filters                 ----------------> Done
+11- Supervisor will add visit for himself                 ---------------> Done
+12- fos will report to multiple supervisor
+13- fos will not assigned to supervisor by manual it will be depend on region
+
+Neeraj G
+Heading to be required
+in which context types of task
+
+Rating of Fos and also Area to be provide in My
+Fos option
+Points to be added from aeshar and text from innoteam
+Reason of rejection required from the client side to show in the drop-down of fos app.
+In the notification FoS reason for rejection has to be mention
+Heading to be required in which context types of task
+Rating of Fos and also Area to be provide in My Fos option
+
+Rating filter is to be applied on assigned
+Rating will be displayed in front of vendors
+Supervisor can assign multiple regions
+
+Date- 14/07/2022
+D1- If the kyc details is not filled compeltely, then after editing it, it should land the exact location of the attribute/files.
+D2- Once kyc deatils filled completely, then it start the form, from the first page(form).
+3- Need to share points(touch points) where we need text and heading from InnoDesigns team.
+4- Need list of Rejection text from InnoDesigns team.
+D5- Need to add reason of rejection in notification screen of fos.
+6- Type of task is predefined, Yugasa Team needs to share the list of task with InnoDesigns team, and this task will also apear in filter list of visits screen.
+D7- In filter list of visit screen need to change "upload picture" to "product Upload".
+D8- On the supervisor app, My FoS screen will have the rating infront of fos name and fos shoud be filter by least rated and most rated.
+9- On the supervisor app, My FoS screen will have search option to fos region wise and name wise
+D10- On the supervisor app, My vendor screen should have assigned vendor list by default.
+D11- On the supervisor app, My vendor screen should have rating number infront of vendor name and vendors can be filtered by most rated and least rated.
+D12- On the supervisor app, Dashboard on my vendors there will be one icon for unassgined vendors on click of that will open list of unassigned vendors.
+D13- On the supervisor app, My vendor will count only assigned vendors.
+D14- On the supervisor app, Need to Remove assigned and unassigned filters of My vendor screen.
+D15- Supervisor should be able add visit for himself.
+16- On the admin panel, while creating super visor, region should be multiselect.
+17- Supervisor who has multiple resgions assigned can see data of fos which supervisor came under him
